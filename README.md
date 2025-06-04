@@ -10,6 +10,7 @@ https://pwuvlkh.nem.ink
 
 
 Для запуску проєкту локально:
+Встановіть docker та docker-compose, потім:
 1. Отримайте API ключ на https://home.openweathermap.org/api_keys
 2. Скачайте останній реліз з https://github.com/MagnarIUK/VyrobnichaPractika/releases/latest
 3. Розпакуйте архів у зручній директорії
