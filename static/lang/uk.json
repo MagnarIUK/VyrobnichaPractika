@@ -1,0 +1,14 @@
+{
+    "app_title": "Погода",
+    "current_weather_title": "Поточна погода",
+    "humidity_label": "Вологість:",
+    "wind_speed_label": "Сила вітру:",
+    "pressure_label": "Тиск:",
+    "visibility_label": "Видимість:",
+    "refresh_button": "Оновити погоду",
+    "powered_by_label": "Працює з OpenWeatherMap",
+    "settings_title": "Налаштування",
+    "language_label": "Мова:",
+    "close_button": "Закрити",
+    "loading_weather": "Завантаження Погоди..."
+}
