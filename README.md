@@ -1,9 +1,13 @@
 ПРОЄКТ ЗРОБЛЕНО ДЛЯ ВИРОБНИЧОЇ ПРАКТИКИ В УНІВЕРСИТЕТІ!!
 
 Запущену версію проєкту можна глянути тут:
+
 https://pwuvlkh.nem.ink
+
 Ім'я користувача: itcdmacfcg
+
 Пароль: 2r8b03tAWjgso8MTqxO6hwQV
+
 
 Для запуску проєкту локально:
 1. Отримайте API ключ на https://home.openweathermap.org/api_keys
