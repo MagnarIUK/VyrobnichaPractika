@@ -9,14 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-    <div class="weather-container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="text-center w-100" data-i18n="current_weather_title">Current Weather</h1>
-            <button class="btn btn-sm btn-light settings-btn" data-bs-toggle="modal" data-bs-target="#settingsModal" aria-label="Settings">
-                <i class="fas fa-cog"></i>
-            </button>
-        </div>
-
+    <div class="weather-main-content">
         <div id="loading-spinner" class="loading-spinner-overlay">
             <div class="spinner-border text-light" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -26,12 +19,40 @@
 
         <div id="weather-card" class="card shadow-lg p-4">
             <div class="card-body text-center">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="text-center w-100 mb-0" data-i18n="current_weather_title">Current Weather</h1>
+                    <button class="btn btn-sm btn-light settings-btn" data-bs-toggle="modal" data-bs-target="#settingsModal" aria-label="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+
                 <h2 id="location-name" class="card-title"></h2>
                 <div class="weather-icon-container">
                     <img id="weather-icon" src="" alt="Weather Icon" class="weather-icon">
                 </div>
-                <p id="temperature" class="temperature-display"></p>
+                <p id="temperature" class="temperature-display clickable"></p>
                 <p id="description" class="weather-description"></p>
+                <p id="feels-like" class="feels-like-display" data-i18n="feels_like_label"></p>
+
+                <div id="additional-temp-info" class="additional-info-group hidden">
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <p class="detail-label" data-i18n="sunrise_label">Sunrise:</p>
+                            <p id="sunrise" class="detail-value"></p>
+                        </div>
+                        <div class="col-6">
+                            <p class="detail-label" data-i18n="sunset_label">Sunset:</p>
+                            <p id="sunset" class="detail-value"></p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <p class="detail-label" data-i18n="visibility_label">Visibility:</p>
+                            <p id="visibility" class="detail-value"></p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row mt-4">
                     <div class="col-6">
                         <p class="detail-label" data-i18n="humidity_label">Humidity:</p>
@@ -39,25 +60,35 @@
                     </div>
                     <div class="col-6">
                         <p class="detail-label" data-i18n="wind_speed_label">Wind Speed:</p>
-                        <p id="wind-speed" class="detail-value"></p>
+                        <p id="wind-speed" class="detail-value clickable"></p>
                     </div>
                 </div>
+
+                <div id="additional-wind-info" class="additional-info-group hidden">
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <p class="detail-label" data-i18n="wind_direction_label">Wind Direction:</p>
+                            <p id="wind-direction" class="detail-value"></p>
+                        </div>
+                        <div class="col-6">
+                            <p class="detail-label" data-i18n="wind_gust_label">Wind Gust:</p>
+                            <p id="wind-gust" class="detail-value"></p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row mt-2">
-                    <div class="col-6">
+                    <div class="col-12">
                         <p class="detail-label" data-i18n="pressure_label">Pressure:</p>
                         <p id="pressure" class="detail-value"></p>
-                    </div>
-                    <div class="col-6">
-                        <p class="detail-label" data-i18n="visibility_label">Visibility:</p>
-                        <p id="visibility" class="detail-value"></p>
                     </div>
                 </div>
                 <button id="refresh-button" class="btn btn-primary mt-4 w-100 refresh-btn">
                     <i class="fas fa-sync-alt"></i> <span data-i18n="refresh_button">Refresh Weather</span>
                 </button>
+                <p class="text-center mt-3 text-muted" data-i18n="powered_by_label">Powered by OpenWeatherMap</p>
             </div>
         </div>
-        <p class="text-center mt-3 text-muted" data-i18n="powered_by_label">Powered by OpenWeatherMap</p>
     </div>
 
     <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
@@ -73,12 +104,12 @@
                         <select class="form-select" id="languageSelect">
                             <option value="en">English</option>
                             <option value="uk">Українська</option>
-                            </select>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="close_button">Close</button>
-                    </div>
+                </div>
             </div>
         </div>
     </div>

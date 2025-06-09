@@ -1,6 +1,7 @@
 {
     "app_title": "Weather",
     "current_weather_title": "Current Weather",
+    "loading_weather": "Loading Weather...",
     "humidity_label": "Humidity:",
     "wind_speed_label": "Wind Speed:",
     "pressure_label": "Pressure:",
@@ -10,5 +11,15 @@
     "settings_title": "Settings",
     "language_label": "Language:",
     "close_button": "Close",
-    "loading_weather": "Loading Weather..."
+    "sunrise_label": "Sunrise:",
+    "sunset_label": "Sunset:",
+    "wind_direction_label": "Wind Direction:",
+    "wind_gust_label": "Wind Gust:",
+    "feels_like_label": "Feels like:",
+    "wind_directions": ["N", "NE", "E", "SE", "S", "SW", "W", "NW"],
+    "units": {
+        "speed": "m/s",
+        "distance": "km",
+        "pressure": "hPa"
+    }
 }

@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS, cross_origin
 
 import requests
 import os
-
 app = Flask(__name__)
-
+CORS(app,
+     origins=["http://localhost:5000", "https://pwuvlkh.nem.ink/"],
+     methods=["GET"],
+     max_age=3600)
 
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 OPENWEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
@@ -17,7 +20,8 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/weather')
+@app.route('/weather', methods=['GET'])
+@cross_origin(methods=['GET'])
 def get_weather():
     lat = request.args.get('lat')
     lon = request.args.get('lon')

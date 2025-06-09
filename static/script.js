@@ -1,7 +1,7 @@
 let lastKnownLat = null;
 let lastKnownLon = null;
 let currentLanguage = 'en';
-
+let translatedWindDirections = [];
 const translations = {};
 let loadingSpinner;
 let weatherCard;
@@ -24,6 +24,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         languageSelect.addEventListener('change', (event) => {
             const newLang = event.target.value;
             setLanguage(newLang);
+        });
+    }
+
+    const temperatureElement = document.getElementById('temperature');
+    if (temperatureElement) {
+        temperatureElement.addEventListener('click', () => {
+            document.getElementById('additional-temp-info').classList.toggle('hidden');
+        });
+    }
+
+    const windSpeedElement = document.getElementById('wind-speed');
+    if (windSpeedElement) {
+        windSpeedElement.addEventListener('click', () => {
+            document.getElementById('additional-wind-info').classList.toggle('hidden');
         });
     }
 });
@@ -77,6 +91,8 @@ function applyTranslations(lang) {
     if (appTitleElement && texts['app_title']) {
         appTitleElement.textContent = texts['app_title'];
     }
+
+    translatedWindDirections = texts['wind_directions'] || ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 }
 
 async function loadAndApplyLanguage() {
@@ -168,20 +184,44 @@ async function getWeatherByCity(city) {
     }
 }
 
+function convertWindDegreesToDirection(deg) {
+    const directions = translatedWindDirections.length > 0 ? translatedWindDirections : ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+
+    const index = Math.round((deg % 360) / 45);
+    return directions[index % 8];
+}
+
+function formatTime(timestamp) {
+    const date = new Date(timestamp * 1000);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+}
+
 
 function updateWeatherUI(data) {
     if (data.error) {
         alert(data.error);
         return;
     }
+    const units = translations[currentLanguage]['units'];
+    const feelsLikeText = translations[currentLanguage]['feels_like_label'] || 'Feels Like';
 
     document.getElementById('location-name').textContent = data.name || 'N/A';
-    document.getElementById('temperature').textContent = `${data.main.temp}°C`;
+    document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}°C`;
     document.getElementById('description').textContent = data.weather[0].description || 'N/A';
+    document.getElementById('feels-like').textContent = `${feelsLikeText} ${Math.round(data.main.feels_like)}°C`;
     document.getElementById('humidity').textContent = `${data.main.humidity}%`;
-    document.getElementById('wind-speed').textContent = `${data.wind.speed} m/s`;
-    document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
-    document.getElementById('visibility').textContent = `${(data.visibility / 1000).toFixed(1)} km`; // Convert meters to km
+    document.getElementById('wind-speed').textContent = `${data.wind.speed} ${units['speed']}`;
+    document.getElementById('pressure').textContent = `${data.main.pressure} ${units['speed']}`;
+
+    document.getElementById('sunrise').textContent = data.sys.sunrise ? formatTime(data.sys.sunrise) : 'N/A';
+    document.getElementById('sunset').textContent = data.sys.sunset ? formatTime(data.sys.sunset) : 'N/A';
+    document.getElementById('visibility').textContent = data.visibility ? `${(data.visibility / 1000).toFixed(1)} ${units['distance']}` : 'N/A';
+
+    document.getElementById('wind-direction').textContent = data.wind.deg ? convertWindDegreesToDirection(data.wind.deg) : 'N/A';
+    document.getElementById('wind-gust').textContent = data.wind.gust ? `${data.wind.gust.toFixed(1)} ${units['speed']}` : 'N/A';
+
 
     const weatherIcon = document.getElementById('weather-icon');
     if (data.weather[0].icon) {

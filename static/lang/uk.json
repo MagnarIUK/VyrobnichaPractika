@@ -1,14 +1,25 @@
 {
     "app_title": "Погода",
-    "current_weather_title": "Поточна погода",
+    "current_weather_title": "Поточна Погода",
+    "loading_weather": "Завантаження погоди...",
     "humidity_label": "Вологість:",
-    "wind_speed_label": "Сила вітру:",
+    "wind_speed_label": "Швидкість вітру:",
     "pressure_label": "Тиск:",
     "visibility_label": "Видимість:",
-    "refresh_button": "Оновити погоду",
-    "powered_by_label": "Працює з OpenWeatherMap",
+    "refresh_button": "Оновити Погоду",
+    "powered_by_label": "Працює на OpenWeatherMap",
     "settings_title": "Налаштування",
     "language_label": "Мова:",
     "close_button": "Закрити",
-    "loading_weather": "Завантаження Погоди..."
+    "sunrise_label": "Схід сонця:",
+    "sunset_label": "Захід сонця:",
+    "wind_direction_label": "Напрямок вітру:",
+    "wind_gust_label": "Порив вітру:",
+    "feels_like_label": "Відчувається як:",
+    "wind_directions": ["Пн", "Пн-Сх", "Сх", "Пд-Сх", "Пд", "Пд-Зх", "Зх", "Пн-Зх"],
+        "units": {
+        "speed": "м/с",
+        "distance": "км",
+        "pressure": "гПа"
+    }
 }

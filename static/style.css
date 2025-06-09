@@ -11,9 +11,13 @@ body {
     box-sizing: border-box;
 }
 
-.weather-container {
+.weather-main-content {
     max-width: 500px;
     width: 100%;
+    position: relative;
+}
+
+.card {
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 20px;
     padding: 30px;
@@ -21,19 +25,14 @@ body {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
     position: relative;
 }
 
 h1 {
     color: #ffffff;
     font-weight: 600;
-}
-
-.card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 15px;
-    color: #fff;
+    flex-grow: 1;
 }
 
 .card-title {
@@ -58,13 +57,21 @@ h1 {
     font-weight: 800;
     margin-bottom: 10px;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    cursor: pointer;
 }
 
 .weather-description {
     font-size: 1.5em;
     font-weight: 500;
     text-transform: capitalize;
+    margin-bottom: 5px;
+}
+
+.feels-like-display {
+    font-size: 1.1em;
+    font-weight: 500;
     margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .detail-label {
@@ -113,6 +120,8 @@ h1 {
     justify-content: center;
     font-size: 1.2em;
     transition: background-color 0.2s ease, border-color 0.2s ease;
+    margin-left: 15px;
+    flex-shrink: 0;
 }
 
 .settings-btn:hover {
@@ -193,21 +202,44 @@ h1 {
     color: #fff;
 }
 
+
+.clickable {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.clickable:hover {
+    color: #a7d9ff;
+}
+
+.additional-info-group {
+    max-height: 200px;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    opacity: 1;
+}
+
+.additional-info-group.hidden {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
 @media (max-width: 768px) {
     .temperature-display {
-        font-size: 3em; 
+        font-size: 3em;
     }
     .weather-icon {
         width: 100px;
         height: 100px;
     }
-    .weather-container {
+    .card {
         padding: 25px;
     }
 }
 
 @media (max-width: 576px) {
-    .weather-container {
+    .card {
         padding: 15px;
         border-radius: 15px;
     }
@@ -238,6 +270,11 @@ h1 {
 
     .weather-description {
         font-size: 1.1em;
+        margin-bottom: 5px;
+    }
+
+    .feels-like-display {
+        font-size: 1em;
         margin-bottom: 15px;
     }
 
@@ -265,7 +302,6 @@ h1 {
         font-size: 1em;
     }
 
-
     .glassmorphic-modal .modal-content {
         padding: 15px;
     }
@@ -283,7 +319,7 @@ h1 {
 
 
 @media (max-width: 400px) {
-    .weather-container {
+    .card {
         padding: 10px;
     }
     .card-title {
@@ -299,6 +335,10 @@ h1 {
     }
     .weather-description {
         font-size: 1em;
+        margin-bottom: 5px;
+    }
+    .feels-like-display {
+        font-size: 0.9em;
         margin-bottom: 10px;
     }
     .detail-label, .detail-value {
