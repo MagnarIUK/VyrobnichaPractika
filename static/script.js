@@ -216,7 +216,7 @@ function updateWeatherUI(data) {
     document.getElementById('description').textContent = data.weather[0].description || 'N/A';
     document.getElementById('feels-like').textContent = `${feelsLikeText} ${Math.round(data.main.feels_like)}°C`;
     document.getElementById('humidity').textContent = `${data.main.humidity}%`;
-    document.getElementById('wind-speed').querySelector('.weather-value-text').textContent = `${data.wind.speed} m/s`;
+    document.getElementById('wind-speed').querySelector('.weather-value-text').textContent = `${data.wind.speed} ${units['speed']}`;
     /*const windSpeedElement = document.getElementById('wind-speed');
     const windSpeedText = `${data.wind.speed} ${units['speed']}`;
     windSpeedElement.innerHTML = `${windSpeedText} <i class="fas fa-info-circle info-icon"></i>`;*/
