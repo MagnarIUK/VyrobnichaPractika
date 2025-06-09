@@ -226,10 +226,12 @@ h1 {
     transition: transform 0.2s ease, color 0.2s ease;
     margin-top: 5px;
 }
+
 .clickable:hover .info-icon {
     color: #a7d9ff;
     transform: scale(1.5);
 }
+
 .weather-value-text {
     display: inline-block;
 }

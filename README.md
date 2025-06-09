@@ -15,4 +15,4 @@ https://pwuvlkh.nem.ink
 2. Скачайте останній реліз з https://github.com/MagnarIUK/VyrobnichaPractika/releases/latest
 3. Розпакуйте архів у зручній директорії
 4. Відкрийте docker-compose.yml та вставте ваш API ключ у OPENWEATHER_API_KEY, DEBUG має бути або T (для дебаг режиму), або F (для його вимкнення), також замініть порт у ports на зручний вам.
-5. Запустіть docker-compose.
+5. Запустіть скрипт ./start (зроблений для Ubuntu, для інших операційних систем треба модифікувати скрипт)
