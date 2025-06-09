@@ -30,7 +30,10 @@
                 <div class="weather-icon-container">
                     <img id="weather-icon" src="" alt="Weather Icon" class="weather-icon">
                 </div>
-                <p id="temperature" class="temperature-display clickable"></p>
+                <p id="temperature" class="temperature-display clickable">
+                    <span class="weather-value-text"></span>
+                    <i class="fas fa-info-circle info-icon"></i>
+                </p>
                 <p id="description" class="weather-description"></p>
                 <p id="feels-like" class="feels-like-display" data-i18n="feels_like_label"></p>
 
@@ -60,7 +63,10 @@
                     </div>
                     <div class="col-6">
                         <p class="detail-label" data-i18n="wind_speed_label">Wind Speed:</p>
-                        <p id="wind-speed" class="detail-value clickable"></p>
+                        <p id="wind-speed" class="detail-value clickable">
+                            <span class="weather-value-text"></span>
+                            <i class="fas fa-info-circle info-icon"></i>
+                        </p>
                     </div>
                 </div>
 

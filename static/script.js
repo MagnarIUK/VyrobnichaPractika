@@ -134,11 +134,11 @@ function initializeWeather() {
             getWeatherByCoords(lastKnownLat, lastKnownLon);
         }, error => {
             console.error('Geolocation error:', error);
-            alert('Could not get your location. Please allow location access or try again.');
+            alert(`${translations[currentLanguage]["alerts"]["could_not_get_geo"]}`);
             getWeatherByCity('London');
         });
     } else {
-        alert('Geolocation is not supported by your browser.');
+        alert(`${translations[currentLanguage]["alerts"]["geo_not_supported"]}`);
         getWeatherByCity('New York');
     }
 }
@@ -162,7 +162,7 @@ async function getWeatherByCoords(lat, lon) {
         updateWeatherUI(data);
     } catch (error) {
         console.error('Error fetching weather data:', error);
-        alert('Failed to fetch weather data. Please try again later.');
+        alert(`${translations[currentLanguage]["alerts"]["api_error"]}`);
     } finally {
         hideSpinner();
     }
@@ -178,7 +178,7 @@ async function getWeatherByCity(city) {
         updateWeatherUI(data);
     } catch (error) {
         console.error('Error fetching weather data:', error);
-        alert('Failed to fetch weather data for the default city. Please try again later.');
+        alert(`${translations[currentLanguage]["alerts"]["api_error"]}`);
     } finally {
         hideSpinner();
     }
@@ -208,11 +208,19 @@ function updateWeatherUI(data) {
     const feelsLikeText = translations[currentLanguage]['feels_like_label'] || 'Feels Like';
 
     document.getElementById('location-name').textContent = data.name || 'N/A';
-    document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}°C`;
+    document.getElementById('temperature').querySelector('.weather-value-text').textContent = `${Math.round(data.main.temp)}°C`;
+    /*const tempElement = document.getElementById('temperature');
+    const tempText = `${Math.round(data.main.temp)}°C`
+    tempElement.innerHTML = `${tempText} <i class="fas fa-info-circle info-icon"></i>`;*/
+
     document.getElementById('description').textContent = data.weather[0].description || 'N/A';
     document.getElementById('feels-like').textContent = `${feelsLikeText} ${Math.round(data.main.feels_like)}°C`;
     document.getElementById('humidity').textContent = `${data.main.humidity}%`;
-    document.getElementById('wind-speed').textContent = `${data.wind.speed} ${units['speed']}`;
+    document.getElementById('wind-speed').querySelector('.weather-value-text').textContent = `${data.wind.speed} m/s`;
+    /*const windSpeedElement = document.getElementById('wind-speed');
+    const windSpeedText = `${data.wind.speed} ${units['speed']}`;
+    windSpeedElement.innerHTML = `${windSpeedText} <i class="fas fa-info-circle info-icon"></i>`;*/
+
     document.getElementById('pressure').textContent = `${data.main.pressure} ${units['speed']}`;
 
     document.getElementById('sunrise').textContent = data.sys.sunrise ? formatTime(data.sys.sunrise) : 'N/A';

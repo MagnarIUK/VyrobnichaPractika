@@ -205,11 +205,33 @@ h1 {
 
 .clickable {
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: color 0.15s ease, transform 0.15s ease;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
 }
 
 .clickable:hover {
     color: #a7d9ff;
+}
+.clickable:active {
+    color: #79bbff;
+    transform: scale(0.90);
+}
+
+.info-icon {
+    font-size: 0.4em;
+    color: rgba(255, 255, 255, 0.6);
+    transition: transform 0.2s ease, color 0.2s ease;
+    margin-top: 5px;
+}
+.clickable:hover .info-icon {
+    color: #a7d9ff;
+    transform: scale(1.5);
+}
+.weather-value-text {
+    display: inline-block;
 }
 
 .additional-info-group {

@@ -21,5 +21,10 @@
         "speed": "m/s",
         "distance": "km",
         "pressure": "hPa"
+    },
+    "alerts": {
+        "geo_not_supported": "Geolocation is not supported by your browser.",
+        "could_not_get_geo": "Could not get your location. Please allow location access or try again.",
+        "api_error": "Failed to fetch weather data. Please try again later."
     }
 }
