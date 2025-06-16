@@ -112,6 +112,17 @@
                             <option value="uk">Українська</option>
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label for="cityInput" class="form-label" data-i18n="city_label">City:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="cityInput" placeholder="Enter city name" list="citySuggestions">
+                            <button class="btn btn-outline-light" type="button" id="saveCityButton" data-i18n="save_city_button">Save</button>
+                        </div>
+                        <datalist id="citySuggestions"></datalist>
+                        <div>
+                            <button class="geolocation-btn" type="button" id="useGeolocation" data-i18n="use_geo_button">Use Geolocation</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="close_button">Close</button>

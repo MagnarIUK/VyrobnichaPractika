@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import json
 from flask_cors import CORS, cross_origin
 
 import requests
@@ -12,6 +13,21 @@ CORS(app,
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 OPENWEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 DEBUG = os.getenv("DEBUG")
+
+with open('test/static/city.list.json' ,encoding='utf-8') as f:
+    RAW_CITIES = json.load(f)
+
+CITIES = [
+    {
+        "id": city["id"],
+        "name": city["name"],
+        "country": city["country"],
+        "state": city.get("state", ""),
+        "lat": city["coord"]["lat"],
+        "lon": city["coord"]["lon"]
+    }
+    for city in RAW_CITIES
+]
 
 
 
@@ -52,6 +68,27 @@ def get_weather():
         app.logger.error(
             "Failed to decode JSON from OpenWeatherMap API response.")
         return jsonify({"error": "Invalid weather data received."}), 500
+
+
+@app.route('/cities')
+@cross_origin(methods=['GET'])
+def get_cities():
+    query = request.args.get('q', '').lower()
+    if not query:
+        return jsonify([])
+
+    seen_names = set()
+    unique_matches = []
+
+    for city in CITIES:
+        name_lower = city["name"].lower()
+        if query in name_lower and name_lower not in seen_names:
+            seen_names.add(name_lower)
+            unique_matches.append(city)
+
+    sorted_matches = sorted(unique_matches, key=lambda city: city["id"])[:10]
+    return jsonify(sorted_matches)
+
 
 
 if __name__ == '__main__':
