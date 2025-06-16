@@ -257,23 +257,12 @@ async function getWeatherByCoords(lat, lon) {
     try {
         const response = await fetch(`/weather?lat=${lat}&lon=${lon}`);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        updateWeatherUI(data);
-    } catch (error) {
-        console.error('Error fetching weather data:', error);
-        displayMessage(`${translations[currentLanguage]["alerts"]["api_error"]}`, 'error');
-    } finally {
-        hideSpinner();
-    }
-}
+            if(response.status === 429){
+                displayMessage(`${translations[currentLanguage]["alerts"]["api_too_many"]}`, 'error');
+            } else{
+                throw new Error(`HTTP error! status: ${response.status}`);
 
-async function getWeatherByCityId(cityId) {
-    try {
-        const response = await fetch(`/weather?id=${cityId}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            }
         }
         const data = await response.json();
         updateWeatherUI(data);
@@ -289,7 +278,12 @@ async function getWeatherByCity(city) {
     try {
         const response = await fetch(`/weather?city=${city}`);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            if(response.status === 429){
+                displayMessage(`${translations[currentLanguage]["alerts"]["api_too_many"]}`, 'error');
+            } else{
+                throw new Error(`HTTP error! status: ${response.status}`);
+
+            }
         }
         const data = await response.json();
         globalData = data;

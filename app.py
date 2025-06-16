@@ -58,6 +58,10 @@ def get_weather():
 
     try:
         response = requests.get(OPENWEATHER_BASE_URL, params=params)
+        if response.status_code == 429:
+            app.logger.warning("Rate limit exceeded for OpenWeather API.")
+            return jsonify({"error": "Rate limit exceeded. Please try again later."}), 429
+
         response.raise_for_status()
         weather_data = response.json()
         return jsonify(weather_data)
