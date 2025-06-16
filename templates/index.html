@@ -19,13 +19,6 @@
 
         <div id="weather-card" class="card shadow-lg p-4">
             <div class="card-body text-center">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1 class="text-center w-100 mb-0" data-i18n="current_weather_title">Current Weather</h1>
-                    <button class="btn btn-sm btn-light settings-btn" data-bs-toggle="modal" data-bs-target="#settingsModal" aria-label="Settings">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                </div>
-
                 <h2 id="location-name" class="card-title"></h2>
                 <div class="weather-icon-container">
                     <img id="weather-icon" src="" alt="Weather Icon" class="weather-icon">
@@ -89,9 +82,14 @@
                         <p id="pressure" class="detail-value"></p>
                     </div>
                 </div>
-                <button id="refresh-button" class="btn btn-primary mt-4 w-100 refresh-btn">
-                    <i class="fas fa-sync-alt"></i> <span data-i18n="refresh_button">Refresh Weather</span>
-                </button>
+                <div class="d-flex justify-content-between mt-4">
+                    <button id="refresh-button" class="btn btn-primary refresh-btn flex-grow-1 me-2">
+                        <i class="fas fa-sync-alt"></i> <span data-i18n="refresh_button">Refresh Weather</span>
+                    </button>
+                    <button class="btn btn-primary settings-btn" data-bs-toggle="modal" data-bs-target="#settingsModal" aria-label="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

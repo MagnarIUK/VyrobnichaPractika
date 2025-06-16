@@ -51,7 +51,7 @@ const weatherBackgrounds = {
     'default': 'linear-gradient(to right top, #6a11cb, #2575fc)'
 };
 
-
+    selectedCity = localStorage.getItem('weatherAppCity')
 
 document.addEventListener('DOMContentLoaded', async () => {
     loadingSpinner = document.getElementById('loading-spinner');
@@ -63,11 +63,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     useGeolocationButton = document.getElementById('useGeolocation')
 
     await loadAndApplyLanguage();
-
-    selectedCity = localStorage.getItem('weatherAppCity')
     if(cityInput && selectedCity){
         cityInput.value = selectedCity;
     }
+    console.log(selectedCity)
 
     initializeWeather();
 
@@ -415,7 +414,7 @@ function updateWeatherUI(data) {
     const windSpeedText = `${data.wind.speed} ${units['speed']}`;
     windSpeedElement.innerHTML = `${windSpeedText} <i class="fas fa-info-circle info-icon"></i>`;*/
 
-    document.getElementById('pressure').textContent = `${data.main.pressure} ${units['speed']}`;
+    document.getElementById('pressure').textContent = `${data.main.pressure} ${units['pressure']}`;
 
     document.getElementById('sunrise').textContent = data.sys.sunrise ? formatTime(data.sys.sunrise) : 'N/A';
     document.getElementById('sunset').textContent = data.sys.sunset ? formatTime(data.sys.sunset) : 'N/A';
