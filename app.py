@@ -14,7 +14,7 @@ OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 OPENWEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 DEBUG = os.getenv("DEBUG")
 
-with open('test/static/city.list.json' ,encoding='utf-8') as f:
+with open('static/city.list.json' ,encoding='utf-8') as f:
     RAW_CITIES = json.load(f)
 
 CITIES = [
