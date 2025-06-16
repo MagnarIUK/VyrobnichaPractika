@@ -161,7 +161,7 @@ function applyTranslations(lang) {
         appTitleElement.textContent = texts['app_title'];
     }
 
-    cityInput.innerHTML.placeholder = translations[currentLanguage]['cityInput.placeholder']
+    cityInput.placeholder = translations[currentLanguage]['cityInput.placeholder']
 
     translatedWindDirections = texts['wind_directions'] || ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 }
