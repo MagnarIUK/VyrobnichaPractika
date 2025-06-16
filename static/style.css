@@ -360,8 +360,7 @@ h1 {
     }
 
     .settings-btn {
-        width: 35px;
-        height: 35px;
+        padding: 10px 15px;
         font-size: 1em;
     }
 
@@ -417,8 +416,7 @@ h1 {
         font-size: 0.85em;
     }
     .settings-btn {
-        width: 30px;
-        height: 30px;
+        padding: 8px 12px;
         font-size: 0.9em;
     }
 }

@@ -244,6 +244,7 @@ async function handleCitySave(){
             selectedCity = city;
             localStorage.setItem('weatherAppCity', selectedCity);
             getWeatherByCity(selectedCity);
+            cityInput.value = "";
         } else{
             displayMessage(translations[currentLanguage]['alerts']['enter_city_name'], 'error')
         }
