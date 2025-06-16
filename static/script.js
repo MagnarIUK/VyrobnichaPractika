@@ -164,6 +164,7 @@ function applyTranslations(lang) {
     cityInput.placeholder = translations[currentLanguage]['cityInput.placeholder']
 
     translatedWindDirections = texts['wind_directions'] || ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    initializeWeather()
 }
 
 async function loadAndApplyLanguage() {
@@ -238,9 +239,15 @@ async function handleRefresh() {
 async function handleCitySave(){
    const city = cityInput.value.trim();
    if(city){
-       selectedCity = city;
-       localStorage.setItem('weatherAppCity', selectedCity);
-       getWeatherByCity(selectedCity);
+        const d = await fetchIfCityExist(city)
+       console.log(d)
+        if(d['exists'] === true){
+            selectedCity = city;
+            localStorage.setItem('weatherAppCity', selectedCity);
+            getWeatherByCity(selectedCity);
+        } else{
+            displayMessage(translations[currentLanguage]['alerts']['enter_city_name'], 'error')
+        }
    } else{
        displayMessage(translations[currentLanguage]["alerts"]["enter_city_name"], 'warning')
    }
@@ -300,6 +307,18 @@ function debounce(func, delay){
     return function (...args) {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout( () => func.apply(this, args), delay );
+    }
+}
+
+async function fetchIfCityExist(city){
+    try{
+        const response = await fetch(`/city_exists?q=${encodeURIComponent(city)}`)
+        if(!response.ok){
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        return await response.json();
+    } catch (error){
+        console.error('Error checking city:', error);
     }
 }
 

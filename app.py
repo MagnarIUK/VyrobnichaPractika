@@ -69,6 +69,18 @@ def get_weather():
             "Failed to decode JSON from OpenWeatherMap API response.")
         return jsonify({"error": "Invalid weather data received."}), 500
 
+@app.route('/city_exists')
+@cross_origin(methods=['GET'])
+def city_exists():
+    query = request.args.get('q', '').strip().lower()
+    if not query:
+        return jsonify({"exists": False})
+
+    for city in CITIES:
+        if city["name"].lower() == query:
+            return jsonify({"exists": True, "city": city})
+
+    return jsonify({"exists": False})
 
 @app.route('/cities')
 @cross_origin(methods=['GET'])

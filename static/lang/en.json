@@ -30,6 +30,6 @@
         "geo_not_supported": "Geolocation is not supported by your browser.",
         "could_not_get_geo": "Could not get your location. Please allow location access, try again or set your city in the settings.",
         "api_error": "Failed to fetch weather data. Please try again later.",
-        "enter_city_name": "Please enter a city name."
+        "enter_city_name": "Please enter a valid city name."
     }
 }
