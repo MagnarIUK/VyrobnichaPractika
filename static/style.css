@@ -12,6 +12,18 @@ body {
     transition: background-image 1.5s ease-in-out;
 }
 
+.modal.fade .modal-dialog {
+    transition: transform 0.15s ease-out;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: none;
+}
+
+.modal.fade {
+    transition: opacity 0.15s linear;
+}
+
 .weather-main-content {
     max-width: 500px;
     width: 100%;
